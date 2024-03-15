@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="section-hero overlay inner-page bg-image" style="background-image: url('{{ asset('assets/images/hero_1.jpg')}}'); margin-top: -24px" id="home-section">
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url({{ asset('assets/images/hero_1.jpg')}}); margin-top: -24px" id="home-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
