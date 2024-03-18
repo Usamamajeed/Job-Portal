@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CategoriesTableSeeder::class,
+            addCategoryValueInJobSeeder::class,
+            addAnotherRowInJobsTable::class,
             // Add other seeders here if needed
         ]);
     }
