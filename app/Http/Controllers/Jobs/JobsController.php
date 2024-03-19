@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Jobs;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job\Job;
+use App\Models\Job\JobSaved;
 use Illuminate\Http\Request;
 
 class JobsController extends Controller
@@ -18,6 +19,24 @@ class JobsController extends Controller
 
         return view('jobs.single',compact('job', 'relatedJobs', 'relatedJobsCount'));
 
+
+    }
+
+    public function savejob(Request $request)
+    {
+        $savejob = JobSaved::create([
+            'job_id'      => $request->job_id,
+            'user_id'     => $request->user_id,
+            'job_image'   => $request->job_image,
+            'job_title'   => $request->job_title,
+            'job_region'  => $request->job_region,
+            'job_type'    => $request->job_type,
+            'company'     => $request->company,
+        ]);
+
+        if ($savejob) {
+            return redirect('/jobs/single/'.$request->job_id.'')->with('save', 'job saved successfully');
+        }
 
     }
 }
