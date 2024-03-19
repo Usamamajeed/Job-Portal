@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Jobs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job\Application;
 use App\Models\Job\Job;
 use App\Models\Job\JobSaved;
 use Illuminate\Http\Request;
@@ -45,20 +46,27 @@ class JobsController extends Controller
 
     public function jobApply(Request $request)
     {
-        if ($request->cv )
-        $savejob = JobSaved::create([
-            'job_id'      => $request->job_id,
-            'user_id'     => $request->user_id,
-            'job_image'   => $request->job_image,
-            'job_title'   => $request->job_title,
-            'job_region'  => $request->job_region,
-            'job_type'    => $request->job_type,
-            'company'     => $request->company,
-        ]);
+        if ($request->cv == 'No cv') {
+            return redirect('/jobs/single/'.$request->job_id.'')->with('apply', 'Upload Your CV First In The Profile Page');
+        } else {
+            $applyJob = Application::create([
+                'cv'          => Auth::user()->cv,
+                'job_id'      => $request->job_id,
+                'user_id'     => Auth::user()->id,
+                'job_image'   => $request->job_image,
+                'job_title'   => $request->job_title,
+                'job_region'  => $request->job_region,
+                'job_type'    => $request->job_type,
+                'company'     => $request->company,
+            ]);
 
-        if ($savejob) {
-            return redirect('/jobs/single/'.$request->job_id.'')->with('save', 'job saved successfully');
+            if ($applyJob) {
+                return redirect('/jobs/single/'.$request->job_id.'')->with('applied', 'You Applied To This Job successfully');
+            }
         }
+
+
+
 
     }
 }
