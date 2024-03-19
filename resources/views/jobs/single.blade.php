@@ -17,6 +17,14 @@
         </div>
     </section>
 
+    <div class="container">
+        @if(Session::has('save'))
+            <div class="alert alert-success">
+                <p>{!! Session::get('save') !!}</p>
+            </div>
+        @endif
+    </div>
+
 
     <section class="site-section">
         <div class="container">
