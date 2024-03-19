@@ -78,7 +78,13 @@
                                     <input name="job_region" type="hidden" value="{{ $job->job_region }}"/>
                                     <input name="job_type" type="hidden" value="{{ $job->job_type }}"/>
                                     <input name="company" type="hidden" value="{{ $job->company }}"/>
-                                    <button name="submit" type="submit" class="btn btn-block btn-light btn-md"><i class="icon-heart"></i>Save Job</button>
+
+                                    @if($savedJob > 0)
+                                        <button class="btn btn-block btn-success btn-md" disabled>You saved this job</button>
+                                    @else
+                                        <button name="submit" type="submit" class="btn btn-block btn-light btn-md">Save Job</button>
+                                    @endif
+
                                 </form>
                                 <!--add text-danger to it to make it read-->
                             </div>
