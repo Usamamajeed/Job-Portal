@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('job_title', 200)->default('No job title')->after('password');
+            $table->string('cv', 200)->default('No cv')->after('password');
+            $table->string('job_title', 200)->default('No job title')->after('cv');
             $table->string('bio', 200)->default('No bio')->after('job_title');
             $table->string('twitter', 200)->default('No twitter')->after('bio');
             $table->string('facebook', 200)->default('No facebook')->after('twitter');
@@ -26,6 +27,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('cv');
             $table->dropColumn('job_title');
             $table->dropColumn('bio');
             $table->dropColumn('twitter');
