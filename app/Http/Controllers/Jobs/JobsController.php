@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Jobs;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category\Category;
 use App\Models\Job\Application;
 use App\Models\Job\Job;
 use App\Models\Job\JobSaved;
@@ -25,7 +26,11 @@ class JobsController extends Controller
 
         //verifying if user  applied  to job already
         $appliedJob = Application::where('user_id', Auth::user()->id)->where('job_id',$id)->count();
-        return view('jobs.single',compact('job', 'relatedJobs', 'relatedJobsCount', 'savedJob', 'appliedJob'));
+
+        //Show All Categories
+        $categories = Category::all();
+
+        return view('jobs.single',compact('job', 'relatedJobs', 'relatedJobsCount', 'savedJob', 'appliedJob', 'categories'));
 
     }
 
