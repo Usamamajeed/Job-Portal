@@ -69,7 +69,7 @@ class JobsController extends Controller
             ]);
 
             if ($applyJob) {
-                return redirect('/jobs/single/'.$request->job_id.'')->with('appl    ied', 'You Applied To This Job successfully');
+                return redirect('/jobs/single/'.$request->job_id.'')->with('applied', 'You Applied To This Job successfully');
             }
         }
 
