@@ -29,12 +29,14 @@ class UserControler extends Controller
         return view('users.savedjobs', compact('savedJobs'));
     }
 
+    //This Function will show the details of user
     public function editDetails()
     {
         $userDetails = User::find(Auth::user()->id);
         return view('users.editdetails', compact('userDetails'));
     }
 
+    //This Function will Update the details of user
     public function updateDetails(Request $request)
     {
         $userDetailsUpdate = User::find(Auth::user()->id);
