@@ -9,6 +9,7 @@ use App\Models\Job\Job;
 use App\Models\Job\JobSaved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use mysql_xdevapi\Collection;
 
 class JobsController extends Controller
 {
@@ -76,18 +77,25 @@ class JobsController extends Controller
 
     public function search(Request $request)
     {
-        Request()->validate([
-            "job_title" => "required",
-            "job_region" => "required",
-            "job_type" => "required",
-        ]);
 
         $job_title = $request->get('job_title');
         $job_region = $request->get('job_region');
         $job_type = $request->get('job_type');
+        $searches = collect([]);
+        $query = Job::query()->select();
 
-        $searches = Job::select()->where('job_title', 'like', "%$job_title%")->where('job_region', 'like', "%$job_region%")->where('job_type', 'like', "%$job_type%")->get();
-
+        if($job_title ||$job_region || $job_type) {
+            if ($job_title) {
+                $query->where('job_title', 'like', "%$job_title%");
+            }
+            if ($job_region) {
+                $query->where('job_region', 'like', "%$job_region%");
+            }
+            if ($job_type) {
+                $query->where('job_type', 'like', "%$job_type%");
+            }
+            $searches = $query->get();
+        }
         return view('jobs.search', compact('searches'));
     }
 }
