@@ -40,6 +40,9 @@
                             <label for="job-title">CV</label>
                             <input type="file" name="cv" class="form-control" id="user_cv" placeholder="CV">
                         </div>
+                        @if($errors->has('cv'))
+                            <p class="aler alert-warning"> {{ $errors->first('cv') }} </p>
+                        @endif
 
                         <div class="col-lg-4 ml-auto">
                             <div class="row">

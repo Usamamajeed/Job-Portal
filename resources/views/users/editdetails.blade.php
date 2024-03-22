@@ -49,34 +49,46 @@
                             <label for="job-title">Name</label>
                             <input type="text" name="name" value="{{$userDetails->name}}" class="form-control" id="user_name" placeholder="Name">
                         </div>
-
+                        @if($errors->has('name'))
+                            <p class="aler alert-warning"> {{ $errors->first('name') }} </p>
+                        @endif
                         <div class="form-group">
                             <label for="job-title">Job Title</label>
                             <input type="text" name="job_title" value="{{$userDetails->job_title}}" class="form-control" id="job_title" placeholder="Job Title">
                         </div>
-
+                        @if($errors->has('job_title'))
+                            <p class="aler alert-warning"> {{ $errors->first('job_title') }} </p>
+                        @endif
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="text-black" for="">Bio</label>
                                 <textarea name="bio" id="" cols="30" rows="7" class="form-control" placeholder="Bio">{{$userDetails->bio}}</textarea>
                             </div>
                         </div>
-
+                        @if($errors->has('bio'))
+                            <p class="aler alert-warning"> {{ $errors->first('bio') }} </p>
+                        @endif
                         <div class="form-group">
                             <label for="job-title">Facebook</label>
                             <input type="text" name="facebook" value="{{$userDetails->facebook}}" class="form-control" id="facebook" placeholder="Facebook">
                         </div>
-
+                        @if($errors->has('facebook'))
+                            <p class="aler alert-warning"> {{ $errors->first('facebook') }} </p>
+                        @endif
                         <div class="form-group">
                             <label for="job-title">Twitter</label>
                             <input type="text" name="twitter" value="{{$userDetails->twitter}}" class="form-control" id="twitter" placeholder="Twitter">
                         </div>
-
+                        @if($errors->has('twitter'))
+                            <p class="aler alert-warning"> {{ $errors->first('twitter') }} </p>
+                        @endif
                         <div class="form-group">
                             <label for="job-title">Linkedin</label>
                             <input type="text" name="linkedin" value="{{$userDetails->linkedin}}" class="form-control" id="job_title" placeholder="Linkedin">
                         </div>
-
+                        @if($errors->has('linkedin'))
+                            <p class="aler alert-warning"> {{ $errors->first('linkedin') }} </p>
+                        @endif
 
                         <div class="col-lg-4 ml-auto">
                             <div class="row">

@@ -39,6 +39,17 @@ class UserControler extends Controller
     //This Function will Update the details of user
     public function updateDetails(Request $request)
     {
+        //Validate Input Fields So It can't be null
+        Request()->validate([
+            "name" => "required|max:40", //Required and can be 40 chrachters max
+            "job_title" => "required|max:40",
+            "bio" => "required", //Required and no length described
+            "facebook" => "required|max:140",
+            "twitter" => "required|max:140",
+            "linkedin" => "required|max:140",
+        ]);
+
+
         $userDetailsUpdate = User::find(Auth::user()->id);
         $userDetailsUpdate->update([
             "name" => $request->name,
@@ -60,6 +71,9 @@ class UserControler extends Controller
 
     public function updateCV(Request $request)
     {
+        Request()->validate([
+            "cv" => "required"
+        ]);
         //Before updating the CV, Delete the previous
         $oldCV = User::find(Auth::user()->id);
         $file_path = public_path('assets/cvs/'.$oldCV->cv);
@@ -86,6 +100,9 @@ class UserControler extends Controller
 
     public function updateImage(Request $request)
     {
+        Request()->validate([
+            "user_image" => "required"
+        ]);
         //Before updating the User Image, Delete the previous
         $oldImage = User::find(Auth::user()->id);
         $image_path = public_path('assets/images_users/'.$oldImage->image);

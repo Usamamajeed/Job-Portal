@@ -40,7 +40,9 @@
                             <label for="job-title">User Image</label>
                             <input type="file" name="user_image" class="form-control" id="user_image" placeholder="CV">
                         </div>
-
+                        @if($errors->has('user_image'))
+                            <p class="aler alert-warning"> {{ $errors->first('user_image') }} </p>
+                        @endif
                         <div class="col-lg-4 ml-auto">
                             <div class="row">
                                 <div class="col-6">
