@@ -32,3 +32,5 @@ Route::get('/users/edit-details', [App\Http\Controllers\Users\UserControler::cla
 Route::post('/users/edit-details', [App\Http\Controllers\Users\UserControler::class, 'updateDetails'])->name('update.details');
 Route::get('/users/edit-cv', [App\Http\Controllers\Users\UserControler::class, 'showCV'])->name('show.cv');
 Route::post('/users/edit-cv', [App\Http\Controllers\Users\UserControler::class, 'updateCV'])->name('update.cv');
+Route::get('/users/edit-profile-image', [App\Http\Controllers\Users\UserControler::class, 'showImage'])->name('show.image');
+Route::post('/users/edit-profile-image', [App\Http\Controllers\Users\UserControler::class, 'updateImage'])->name('update.image');

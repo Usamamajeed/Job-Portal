@@ -9,9 +9,9 @@
 
 
                         <div class="container">
-                            @if(Session::has('update'))
+                            @if(Session::has('image_update'))
                                 <div class="alert alert-success">
-                                    <p>{!! Session::get('update') !!}</p>
+                                    <p>{!! Session::get('image_update') !!}</p>
                                 </div>
                             @endif
                         </div>

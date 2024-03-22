@@ -78,5 +78,31 @@ class UserControler extends Controller
             return redirect('/users/profile/')->with('update', 'CV Updated Sucessfully');
         }
     }
+
+    public function showImage()
+    {
+        return view('users.edit_profile_image');
+    }
+
+    public function updateImage(Request $request)
+    {
+        //Before updating the User Image, Delete the previous
+        $oldImage = User::find(Auth::user()->id);
+        $image_path = public_path('assets/images_users/'.$oldImage->image);
+        unlink($image_path);
+
+
+        //Update the Image
+        $detinationPath = 'assets/images_users';
+        $myImage = $request->user_image->getClientOriginalName();
+        $request->user_image->move(public_path($detinationPath), $myImage);
+        $oldImage->update([
+            'image' => $myImage
+        ]);
+
+        if ($myImage) {
+            return redirect('/users/profile/')->with('image_update', 'Image Updated Sucessfully');
+        }
+    }
 }
 

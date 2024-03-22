@@ -70,6 +70,9 @@
                                             <a class="dropdown-item" href="{{ route('edit.details') }}">
                                                 Update Details
                                             </a>
+                                            <a class="dropdown-item" href="{{ route('show.image') }}">
+                                                Update User Image
+                                            </a>
                                             <a class="dropdown-item" href="{{ route('show.cv') }}">
                                                 Update CV
                                             </a>
