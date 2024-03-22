@@ -20,19 +20,25 @@ class JobsController extends Controller
 
         //getting realted jobs
         $relatedJobs =  Job::where('category',$job->category)->where('id', '!=', $id)->take(5)->get();
+
         $relatedJobsCount =  Job::where('category',$job->category)->where('id', '!=', $id)->take(5)->count();
-
-        //Save Job
-        $savedJob = JobSaved::where('job_id',$id)->where('user_id',Auth::user()->id)->count();
-
-
-        //verifying if user  applied  to job already
-        $appliedJob = Application::where('user_id', Auth::user()->id)->where('job_id',$id)->count();
 
         //Show All Categories
         $categories = Category::all();
 
-        return view('jobs.single',compact('job', 'relatedJobs', 'relatedJobsCount', 'savedJob', 'appliedJob', 'categories'));
+        if (auth()->user()) {
+            //Save Job
+            $savedJob = JobSaved::where('job_id',$id)->where('user_id',Auth::user()->id)->count();
+
+
+            //verifying if user  applied  to job already
+            $appliedJob = Application::where('user_id', Auth::user()->id)->where('job_id',$id)->count();
+
+            return view('jobs.single',compact('job', 'relatedJobs', 'relatedJobsCount', 'savedJob', 'appliedJob', 'categories'));
+        } else {
+            return view('jobs.single',compact('job', 'relatedJobs', 'relatedJobsCount', 'categories'));
+        }
+
 
     }
 
