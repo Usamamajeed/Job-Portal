@@ -7,6 +7,7 @@ use App\Models\Category\Category;
 use App\Models\Job\Application;
 use App\Models\Job\Job;
 use App\Models\Job\JobSaved;
+use App\Models\Job\Search;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use mysql_xdevapi\Collection;
@@ -77,6 +78,12 @@ class JobsController extends Controller
 
     public function search(Request $request)
     {
+        if ($request->job_title) {
+            Search::create([
+                "keyword" => $request->job_title
+            ]);
+        }
+
 
         $job_title = $request->get('job_title');
         $job_region = $request->get('job_region');
