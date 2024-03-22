@@ -52,5 +52,31 @@ class UserControler extends Controller
             return redirect('/users/edit-details/')->with('update', 'User Deatils Updated Sucessfully');
         }
     }
+
+    public function showCV()
+    {
+        return view('users.editcv');
+    }
+
+    public function updateCV(Request $request)
+    {
+        //Before updating the CV, Delete the previous
+        $oldCV = User::find(Auth::user()->id);
+        $file_path = public_path('assets/cvs/'.$oldCV->cv);
+        unlink($file_path);
+
+
+        //Update the CV
+        $detinationPath = 'assets/cvs';
+        $myCV = $request->cv->getClientOriginalName();
+        $request->cv->move(public_path($detinationPath), $myCV);
+        $oldCV->update([
+            'cv' => $myCV
+        ]);
+
+        if ($oldCV) {
+            return redirect('/users/profile/')->with('update', 'CV Updated Sucessfully');
+        }
+    }
 }
 
