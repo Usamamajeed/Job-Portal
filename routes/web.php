@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Jobs\JobsController; //We add the Full path here
 use App\Http\Controllers\Categories\CategoriesController; //We add the Full path here
 use App\Http\Controllers\Users\UserControler; //We add the Full path here
+use App\Http\Controllers\HomeController; //We add the Full path here
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::group(['prefix' => 'jobs'], function () {
     //We use only JobsCOntroller name not all App\Http\Controllers\Jobs\JobsController bcz we add it to the starting

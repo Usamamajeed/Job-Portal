@@ -27,4 +27,14 @@ class HomeController extends Controller
         $totalJobs = Job::all()->count();
         return view('home',compact('jobs','totalJobs'));
     }
+
+    public function about()
+    {
+        return view('pages.about');
+    }
+
+    public function contact()
+    {
+        return view('pages.contact');
+    }
 }
