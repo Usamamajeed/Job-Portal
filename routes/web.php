@@ -17,12 +17,12 @@ use App\Http\Controllers\HomeController; //We add the Full path here
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
-
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -33,6 +33,7 @@ Route::group(['prefix' => 'jobs'], function () {
     Route::get('single/{id}', [JobsController::class, 'single'])->name('single.job');
     Route::post('save', [JobsController::class, 'savejob'])->name('save.job');
     Route::post('apply', [JobsController::class, 'jobApply'])->name('apply.job');
+    Route::any('search', [JobsController::class, 'search'])->name('search.job');
 });
 
 
