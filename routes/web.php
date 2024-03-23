@@ -68,4 +68,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { 
     Route::get('/all-admins', [AdminsController::class, 'admins'])->name('view.admins');
     Route::get('/create-admins', [AdminsController::class, 'createAdmins'])->name('create.admins');
     Route::post('/create-admins', [AdminsController::class, 'storeAdmins'])->name('store.admins');
+    Route::get('/display-categories', [AdminsController::class, 'displayCategories'])->name('display.categories');
 });
