@@ -66,4 +66,6 @@ Route::post('admin/login', [AdminsController::class, 'checkLogin'])->name('check
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { //We add middleware on guard name admin to check if admin then access this route guard is in config>auth
     Route::get('/', [AdminsController::class, 'index'])->name('admins.dashboard');
     Route::get('/all-admins', [AdminsController::class, 'admins'])->name('view.admins');
+    Route::get('/create-admins', [AdminsController::class, 'createAdmins'])->name('create.admins');
+    Route::post('/create-admins', [AdminsController::class, 'storeAdmins'])->name('store.admins');
 });
