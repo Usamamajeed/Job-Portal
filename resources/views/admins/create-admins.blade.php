@@ -12,13 +12,23 @@
                             <input type="email" name="email" id="form2Example1" class="form-control" placeholder="email" />
 
                         </div>
+                        @if($errors->has('email'))
+                            <p class="aler alert-warning"> {{ $errors->first('email') }} </p>
+                        @endif
 
                         <div class="form-outline mb-4">
-                            <input type="text" name="name" id="form2Example1" class="form-control" placeholder="username" />
+                            <input type="text" name="name" id="form2Example1" class="form-control" placeholder="name" />
                         </div>
+                        @if($errors->has('name'))
+                            <p class="aler alert-warning"> {{ $errors->first('name') }} </p>
+                        @endif
+
                         <div class="form-outline mb-4">
                             <input type="password" name="password" id="form2Example1" class="form-control" placeholder="password" />
                         </div>
+                        @if($errors->has('password'))
+                            <p class="aler alert-warning"> {{ $errors->first('password') }} </p>
+                        @endif
 
                         <!-- Submit button -->
                         <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">create</button>
