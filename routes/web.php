@@ -57,6 +57,12 @@ Route::group(['prefix' => 'users'], function () {
     Route::post('edit-profile-image', [UserControler::class, 'updateImage'])->name('update.image');
 });
 
-Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login');
+Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login')->middleware('checkforauth');
+//middleware('checkforauth') this can be any name checkforauth which is define in kernel.php file
+
+
 Route::post('admin/login', [AdminsController::class, 'checkLogin'])->name('check.login');
-Route::get('admin', [AdminsController::class, 'index'])->name('admins.dashboard');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { //We add middleware on guard name admin to check if admin then access this route guard is in config>auth
+    Route::get('/', [AdminsController::class, 'index'])->name('admins.dashboard');
+});
