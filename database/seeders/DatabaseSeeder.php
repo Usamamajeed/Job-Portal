@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             addCategoryValueInJobSeeder::class,
             addAnotherRowInJobsTable::class,
+            AdminsTableSeeder::class,
             // Add other seeders here if needed
         ]);
     }

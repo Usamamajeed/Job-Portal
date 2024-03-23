@@ -5,6 +5,7 @@ use App\Http\Controllers\Jobs\JobsController; //We add the Full path here
 use App\Http\Controllers\Categories\CategoriesController; //We add the Full path here
 use App\Http\Controllers\Users\UserControler; //We add the Full path here
 use App\Http\Controllers\HomeController; //We add the Full path here
+use App\Http\Controllers\Admins\AdminsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('edit-profile-image', [UserControler::class, 'showImage'])->name('show.image');
     Route::post('edit-profile-image', [UserControler::class, 'updateImage'])->name('update.image');
 });
+
+Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login');
+Route::post('admin/login', [AdminsController::class, 'checkLogin'])->name('check.login');
+Route::get('admin', [AdminsController::class, 'index'])->name('admins.dashboard');
