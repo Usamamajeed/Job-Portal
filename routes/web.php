@@ -69,7 +69,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { 
     Route::get('/create-admins', [AdminsController::class, 'createAdmins'])->name('create.admins');
     Route::post('/create-admins', [AdminsController::class, 'storeAdmins'])->name('store.admins');
     Route::get('/display-categories', [AdminsController::class, 'displayCategories'])->name('display.categories');
-
     Route::get('/create-category', [AdminsController::class, 'createCategories'])->name('create.categories');
     Route::post('/create-category', [AdminsController::class, 'storeCategories'])->name('store.categories');
+
+    //Update Categories
+    Route::get('/edit-category/{id}', [AdminsController::class, 'editCategories'])->name('edit.categories');
+    Route::post('/edit-category/{id}', [AdminsController::class, 'updateCategories'])->name('update.categories');
 });
