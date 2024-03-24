@@ -8,6 +8,7 @@ use App\Models\Category\Category;
 use App\Models\Job\Application;
 use App\Models\Job\Job;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -173,6 +174,18 @@ class AdminsController extends Controller
 
         if ($createJobs) {
             return redirect('admin/display-jobs/')->with('create', 'Job Created Sucessfully');
+        }
+    }
+
+    public function deleteJobs($id)
+    {
+        $deletejob = Job::find($id);
+        if (File::exists(public_path('assets/images/'. $deletejob->image))) {
+            File::delete(public_path('assets/images/'. $deletejob->image));
+        }
+        $deletejob->delete();
+        if ($deletejob) {
+            return redirect('admin/display-jobs/')->with('delete', 'Job Deleted Sucessfully');
         }
     }
 

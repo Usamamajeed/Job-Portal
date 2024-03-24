@@ -84,5 +84,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { 
     Route::get('/display-jobs', [AdminsController::class, 'allJobs'])->name('display.jobs');
     Route::get('/create-jobs', [AdminsController::class, 'createJobs'])->name('create.jobs');
     Route::post('/create-jobs', [AdminsController::class, 'storeJobs'])->name('store.jobs');
+    //Delete Jobs
+    Route::get('/delete-jobs/{id}', [AdminsController::class, 'deleteJobs'])->name('delete.jobs');
 
 });
