@@ -82,5 +82,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { 
 
     //Jobs
     Route::get('/display-jobs', [AdminsController::class, 'allJobs'])->name('display.jobs');
+    Route::get('/create-jobs', [AdminsController::class, 'createJobs'])->name('create.jobs');
+    Route::post('/create-jobs', [AdminsController::class, 'storeJobs'])->name('store.jobs');
 
 });
