@@ -201,7 +201,11 @@ class AdminsController extends Controller
         }
     }
 
-
-
+    //Applications
+    public function allApplications()
+    {
+        $apllications = Application::all();
+        return view("admins.all-applications", compact('apllications'));
+    }
 
 }
