@@ -69,6 +69,7 @@ class AdminsController extends Controller
         }
     }
 
+    //Categoreis
     public function displayCategories()
     {
         $categories = Category::all();
@@ -125,5 +126,13 @@ class AdminsController extends Controller
         if ($deleteCategory) {
             return redirect('admin/display-categories/')->with('delete', 'Category Deleted Sucessfully');
         }
+    }
+
+    //Jobs
+
+    public function allJobs()
+    {
+        $jobs = Job::all();
+        return view("admins.all-jobs", compact('jobs'));
     }
 }
