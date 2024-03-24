@@ -75,4 +75,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { 
     //Update Categories
     Route::get('/edit-category/{id}', [AdminsController::class, 'editCategories'])->name('edit.categories');
     Route::post('/edit-category/{id}', [AdminsController::class, 'updateCategories'])->name('update.categories');
+
+    //Delete Categories
+    Route::get('/delete-category/{id}', [AdminsController::class, 'deleteCategories'])->name('delete.categories');
 });
