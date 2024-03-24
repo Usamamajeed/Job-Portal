@@ -89,5 +89,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () { 
 
     //Applications
     Route::get('/display-applications', [AdminsController::class, 'allApplications'])->name('display.applications');
-
+    Route::get('/delete-applications/{id}', [AdminsController::class, 'deleteApplications'])->name('delete.applications');
 });
